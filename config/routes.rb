@@ -42,6 +42,10 @@ Rails.application.routes.draw do
       post 'gettasks' => 'tasks#gettasks'
       post 'startwork' => 'tasks#startwork'
 
+      namespace :vue do
+        resource :tasks, only: [:index, :create, :edit]
+      end
+      
       resources :tictacs, only: [] do
         collection do
           post :start
