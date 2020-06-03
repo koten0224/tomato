@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 class Api::V1::TasksController < ApiController
   before_action :authenticate_user_token
   
@@ -15,9 +14,7 @@ class Api::V1::TasksController < ApiController
     render json: { message: "tictac start", tictac_id: @tictac.id }, status: 200
   end
 
-=======
-class Api::V1::TasksController < ApplicationController
-
+  # Vue API
   def index
     @task = current_user.tasks
     render format: :json
@@ -37,6 +34,12 @@ class Api::V1::TasksController < ApplicationController
     render json: { state: 'update ok' }
   end
 
+  def destroy 
+    task = current_user.tasks.find(params[:id])
+    task.destroy
+    render json: { state: 'ok', taskId: task.id }
+  end
+
   private
 
   def task_params
@@ -49,5 +52,4 @@ class Api::V1::TasksController < ApplicationController
    )
   end
 
->>>>>>> task json
 end
