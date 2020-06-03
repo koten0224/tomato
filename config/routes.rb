@@ -43,7 +43,9 @@ Rails.application.routes.draw do
       post 'gettasks' => 'tasks#gettasks'
       post 'startwork' => 'tasks#startwork'
 
-      resources :tasks, only: [:index, :create, :update]
+      resources :projects, only: [] do
+        resources :tasks, only: [:index, :create, :update]
+      end
 
       resources :tictacs, only: [] do
         collection do
